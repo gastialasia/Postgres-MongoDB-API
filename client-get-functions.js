@@ -4,8 +4,10 @@ const queries = require("./queries")
 const getAllClients = (req, res) => {
     pool.query(queries.getAllClientsQuery, (error, results) => {
         if (error) throw error
-        else
-        res.status(200).json(results.row)
+        else {
+            console.log('Prueba')
+            res.status(200).json(results.rows)
+        }
     })
 }
 
