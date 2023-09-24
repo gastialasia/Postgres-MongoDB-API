@@ -1,0 +1,14 @@
+{
+  "scripts": {
+    "start": "node server.js"
+  },
+  "name": "tpo-bd2",
+  "description": "Trabajo practico obligotorio 2C 2023 Alasia, Della Torre, Escudeiro Garcia, Hiba",
+  "version": "1.0.0",
+  "main": "db.js",
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.18.2"
+  }
+}
