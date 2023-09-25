@@ -9,7 +9,7 @@ router.get('/clients', clientGetController.getAllClients)
 
 router.post('/clients/new', clientPostController.addClient)
 
-router.post('/clients/remove?:client_id', clientPostController.removeClient)
+router.post('/clients/remove', clientPostController.removeClient)
 
 router.post('/products/new', productPostController.addProduct)
 
