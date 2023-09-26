@@ -20,6 +20,7 @@ const removeClient = (req, res) => {
             res.status(400).send("Error en la BD: " + error.message)
         }
         else {
+            console.log(client_id)
             res.status(201).send("Cliente removido con exito")
         }
     })
