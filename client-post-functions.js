@@ -25,7 +25,28 @@ const removeClient = (req, res) => {
     })
 }
 
+const modifyClient = (req, res) => {
+    const client_id = req.query.client_id
+    const body = req.body
+    var failed = false
+    for (const key in body) {
+        if (body.hasOwnProperty(key)) {
+            const value = body[key];
+            console.log(`key: ${key}, value: ${value}`);
+            pool.query(queries.modifyUserQuery, [client_id, key, value], (error, results) => {
+                if (error) {
+                    failed = true
+                }
+            })
+        }
+    }
+    if (!failed) {
+        res.status(201).send("Parametro del cliente modificado con exito")
+    }
+}
+
 module.exports = {
     addClient,
-    removeClient
+    removeClient,
+    modifyClient
 }

@@ -11,6 +11,8 @@ router.post('/clients/new', clientPostController.addClient)
 
 router.post('/clients/remove', clientPostController.removeClient)
 
+router.post('/clients/modify', clientPostController.modifyClient)
+
 router.post('/products/new', productPostController.addProduct)
 
 module.exports = router
