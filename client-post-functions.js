@@ -27,10 +27,27 @@ const removeClient = (req, res) => {
 }
 
 const modifyClient = (req, res) => {
-    const client_id = req.query.client_id
+    const nro_cliente = req.query.nro_cliente
+    delete req.query.nro_cliente
+
+    const queryParamsArray = Object.entries(req.query)
+    //console.log(nro_cliente)
+    //console.log(queryParamsArray.length)
+    //console.log(queryParamsArray)
+    //const len = queryParamsArray.length
+    const query = queries.buildModifyString(queryParamsArray, nro_cliente)
     const body = req.body
     var failed = false
-    for (const key in body) {
+
+    console.log(query)
+
+    pool.query(query, (error, results) => {
+        if (error) {
+            failed = true
+        }
+    })
+
+    /*for (const key in body) {
         if (body.hasOwnProperty(key)) {
             const value = body[key];
             console.log(`key: ${key}, value: ${value}`);
@@ -40,7 +57,7 @@ const modifyClient = (req, res) => {
                 }
             })
         }
-    }
+    }*/
     if (!failed) {
         res.status(201).send("Parametro del cliente modificado con exito")
     }
