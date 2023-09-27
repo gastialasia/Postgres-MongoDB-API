@@ -4,20 +4,20 @@ const newUserQuery = "INSERT INTO e01_cliente (nro_cliente, nombre, apellido, di
 
 const removeUserQuery = "DELETE FROM e01_cliente WHERE nro_cliente = $1;"
 
-const modifyUserQuery = "UPDATE e01_cliente SET $2 = $3 WHERE nro_cliente = $1; "
-
 const newProductQuery = "INSERT INTO e01_producto (codigo_producto, marca, nombre, descripcion, precio, stock) VALUES ($1, $2, $3, $4, $5, $6);"
 
-function buildModifyString(queryParams, client_id) {
-    let result = "UPDATE e01_cliente SET " + queryParams[0][0] + " = " + "'" + queryParams[0][1] + "'"
+const removeProductQuery = "DELETE FROM e01_producto WHERE codigo_producto = $1;"
+
+function buildModifyString(queryParams, table_name, column_name, item_id) {
+
+    let result = "UPDATE " + table_name + " SET " + queryParams[0][0] + " = " + "'" + queryParams[0][1] + "'"
     var qty = queryParams.length
-    //console.log('-----------')
-    //console.log(qty)
+
     for (i = 1; i < qty; i++) {
         result += ", " + queryParams[i][0] + " = " + "'" + queryParams[i][1] + "'";
     }
 
-    result += " WHERE nro_cliente = " + client_id + ";";
+    result += " WHERE " + column_name + "=" + item_id + ";";
 
     return result.trim();
 }
@@ -27,6 +27,6 @@ module.exports = {
     newUserQuery,
     newProductQuery,
     removeUserQuery,
-    modifyUserQuery,
-    buildModifyString
+    removeProductQuery,
+    buildModifyString,
 }

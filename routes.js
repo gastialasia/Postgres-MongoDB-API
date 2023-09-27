@@ -15,10 +15,8 @@ router.post('/clients/modify', clientPostController.modifyClient)
 
 router.post('/products/new', productPostController.addProduct)
 
-module.exports = router
+router.post('/products/remove', productPostController.removeProduct)
 
-/*
-/clients/new
-/clients/remove/4
-/clientes/modify/4
-*/
+router.post('/products/modify', productPostController.modifyProduct)
+
+module.exports = router

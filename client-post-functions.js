@@ -28,14 +28,10 @@ const removeClient = (req, res) => {
 
 const modifyClient = (req, res) => {
     const client_id = req.query.client_id
-    //delete req.query.client_id
 
     const queryParamsArray = Object.entries(req.body)
-    //console.log(nro_cliente)
-    //console.log(queryParamsArray.length)
-    //console.log(queryParamsArray)
-    //const len = queryParamsArray.length
-    const query = queries.buildModifyString(queryParamsArray, client_id)
+
+    const query = queries.buildModifyString(queryParamsArray, 'e01_cliente', 'nro_cliente', client_id)
 
     console.log(query)
 
@@ -43,7 +39,7 @@ const modifyClient = (req, res) => {
         if (error) {
             res.status(400).send("Error en la BD: " + error.message)
         } else {
-            res.status(201).send("Parametro del cliente modificado con exito")
+            res.status(201).send("Parametro/s del cliente modificado con exito")
         }
     })
 }
