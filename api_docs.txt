@@ -1,0 +1,45 @@
+Queries comunes
+
+En los body de los modify se pasan por body los campos que se quieren modificar, sin importar el orden.
+En los new hay que pasar el body en el orden de los campos de la base de datos.
+
+POST: Agregar cliente
+
+POST: Borrar cliente
+
+POST: Editar cliente
+
+
+
+POST: Agregar producto
+
+	Endpoint: localhost:9999/api/v1/products/new
+
+	Body (JSON):
+
+		{
+        "marca": "PRUEBA",
+        "nombre": "PRODUCTO",
+        "descripcion": "Corazon humano",
+        "precio": 1000.0,
+        "stock": 99999
+		}
+
+POST: Borrar producto
+
+	Endpoint: localhost:9999/api/v1/products/remove?product_id=1
+
+}
+
+POST: Editar producto
+
+	Endpoint: localhost:9999/api/v1/products/modify?product_id=1
+
+	Body (JSON):
+		{
+        "codigo_producto": 61016,
+        "marca": "De vaca",
+        "nombre": "Corazon",
+        "descripcion": "Corazon vacuno",
+        "precio": 1000.0,
+        "stock": 1
