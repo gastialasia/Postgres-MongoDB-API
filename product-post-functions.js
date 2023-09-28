@@ -2,8 +2,8 @@ const pool = require("./db")
 const queries = require("./queries")
 
 const addProduct = (req, res) => {
-    const { codigo_producto, marca, nombre, descripcion, precio, stock } = req.body
-    pool.query(queries.newProductQuery, [codigo_producto, marca, nombre, descripcion, precio, stock], (error, results) => {
+    const { marca, nombre, descripcion, precio, stock } = req.body
+    pool.query(queries.newProductQuery, [marca, nombre, descripcion, precio, stock], (error, results) => {
         if (error) {
             res.status(400).send("Error en la BD: " + error.message)
         }

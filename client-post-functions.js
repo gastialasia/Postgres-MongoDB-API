@@ -2,8 +2,8 @@ const pool = require("./db")
 const queries = require("./queries")
 
 const addClient = (req, res) => {
-    const { nro_cliente, nombre, apellido, direccion, activo } = req.body
-    pool.query(queries.newUserQuery, [nro_cliente, nombre, apellido, direccion, activo], (error, results) => {
+    const { nombre, apellido, direccion, activo } = req.body
+    pool.query(queries.newUserQuery, [nombre, apellido, direccion, activo], (error, results) => {
         if (error) {
             res.status(400).send("Error en la BD: " + error.message)
         }
