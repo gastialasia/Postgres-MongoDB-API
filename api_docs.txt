@@ -1,14 +1,47 @@
-Queries comunes
+API DOCS
 
-En los body de los modify se pasan por body los campos que se quieren modificar, sin importar el orden.
-En los new hay que pasar el body en el orden de los campos de la base de datos.
+Este archivo muestra las distintas rutas o endpoints a los cuales realizar pedidos. Los ejemplos abarcan el formato completo de una solicitud y en cada caso se aclara
+si es necesario o no llenar todos los campos. Aclaracion: todas las pruebas se realizaron utilizando el programa POSTMAN.
+Recordar que puede comunicarse con la API utilizando curl asegurandose que el formato de envio sea JSON.
+
+Ejemplo para comunicarse usando curl:
+
+ curl http://localhost:9999/api/v1/clients/new -H 'Content-Type: application/json' -d '{"nombre": "Gaston", "apellido": "Alasia", "direccion": "Santa maria", "activo": 1000}'
+
+-> direccion base: localhost:9999/api/v1/
+
+-> A continuacion se muestran ejemplos para cada metodo del ABM en los respectivos endpoints:
 
 POST: Agregar cliente
 
+    Nota: *En los new hay que pasar el body en el orden de los campos de la base de datos*
+
+    Endpoint: localhost:9999/api/v1/clients/new 
+
+	Body (JSON):{
+        "nombre": "Guillermo",
+        "apellido": "Rodriguez",
+        "direccion": "ITBA 12334",
+        "activo": 10
+    }
+
 POST: Borrar cliente
+
+    Endpoint: localhost:9999/api/v1/clients/remove?client_id=1
 
 POST: Editar cliente
 
+    Nota: *En los body de los modify se pasan por body aquellos campos que se quieren modificar, sin importar el orden*
+
+    Endpoint: localhost:9999/api/v1/clients/modify?client_id=1 
+
+	Body (JSON):{
+        "nro_cliente": 999
+        "nombre": "Guillermo",
+        "apellido": "Rodriguez",
+        "direccion": "ITBA 12334",
+        "activo": 10
+    }
 
 
 POST: Agregar producto
@@ -16,30 +49,30 @@ POST: Agregar producto
 	Endpoint: localhost:9999/api/v1/products/new
 
 	Body (JSON):
-
 		{
-        "marca": "PRUEBA",
-        "nombre": "PRODUCTO",
-        "descripcion": "Corazon humano",
+        "marca": "prueba",
+        "nombre": "producto",
+        "descripcion": "esto es un producto",
         "precio": 1000.0,
-        "stock": 99999
+        "stock": 125
 		}
 
 POST: Borrar producto
 
 	Endpoint: localhost:9999/api/v1/products/remove?product_id=1
 
-}
-
 POST: Editar producto
+
+    Nota: *En los body de los modify se pasan por body aquellos campos que se quieren modificar, sin importar el orden*
 
 	Endpoint: localhost:9999/api/v1/products/modify?product_id=1
 
 	Body (JSON):
 		{
         "codigo_producto": 61016,
-        "marca": "De vaca",
-        "nombre": "Corazon",
-        "descripcion": "Corazon vacuno",
+        "marca": "prueba2",
+        "nombre": "producto2",
+        "descripcion": "esto es otro producto",
         "precio": 1000.0,
         "stock": 1
+    }
