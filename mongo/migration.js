@@ -31,7 +31,7 @@ async function executeMapping(collectionName, tableName, mapFunction) {
     }
 };
 
-const mapClient = (row) => ({
+const mapCliente = (row) => ({
     nro_cliente: row.nro_cliente,
     nombre: row.nombre,
     apellido: row.apellido,
@@ -73,7 +73,7 @@ const mapTelefono = (row) => ({
 
 async function migrateData() {
     try {
-        await executeMapping('clients', 'E01_CLIENTE', mapClient);
+        await executeMapping('clientes', 'E01_CLIENTE', mapCliente());
         await executeMapping('detalle_factura', 'E01_DETALLE_FACTURA', mapDetalleFactura);
         await executeMapping('factura', 'E01_FACTURA', mapFactura);
         await executeMapping('producto', 'E01_PRODUCTO', mapProducto);
