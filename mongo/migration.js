@@ -3,7 +3,7 @@ const { MongoClient } = require('mongodb');
 const fs = require("fs");
 
 // PostgreSQL connection settings
-const pgConfig = JSON.parse(fs.readFileSync("./pg_config.json","utf-8"));
+const pgConfig = JSON.parse(fs.readFileSync("./pg_config.json", "utf-8"));
 
 const mongoUrl = 'mongodb://localhost:27017';
 const dbName = 'tpobd2';
@@ -73,7 +73,7 @@ const mapTelefono = (row) => ({
 
 async function migrateData() {
     try {
-        await executeMapping('clientes', 'E01_CLIENTE', mapCliente());
+        await executeMapping('clientes', 'E01_CLIENTE', mapCliente);
         await executeMapping('detalle_factura', 'E01_DETALLE_FACTURA', mapDetalleFactura);
         await executeMapping('factura', 'E01_FACTURA', mapFactura);
         await executeMapping('producto', 'E01_PRODUCTO', mapProducto);
@@ -86,4 +86,4 @@ async function migrateData() {
 migrateData();
 
 // Start the migration process
-module.exports = {migrateData};
+module.exports = { migrateData };
