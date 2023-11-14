@@ -1,3 +1,5 @@
+CONSULTAS MONGODB
+
 --1
 db.clientes.aggregate([
        {
@@ -58,7 +60,24 @@ db.clientes.aggregate([
 ])
 
 --4
-
+db.producto.aggregate([
+  {
+    $lookup: {
+      from: "detalle_factura",
+      localField: "codigo_producto",
+      foreignField: "codigo_producto",
+      as: "facturas"
+    }
+  },
+  {
+    $match: {
+      facturas: { $ne: [] }
+    }
+  },
+  {
+	$project: {_id: 0, codigo_producto: 1, marca: 1, nombre: 1, descripcion: 1, precio: 1, stock: 1}
+}
+]).count
 
 
 --5
@@ -86,3 +105,112 @@ db.clients.aggregate([
       }
    }
 ])
+
+--6
+db.factura.aggregate([{$group:{_id:'$nro_cliente', cantidad_factura:{$sum:1}}}])
+
+--7
+db.clientes.aggregate([
+  {
+    $match: {
+      nombre: "Pandora",
+      apellido: "Tate"
+    }
+  },
+  {
+    $lookup: {
+      from: "factura",
+      localField: "nro_cliente",
+      foreignField: "nro_cliente",
+      as: "facturasCliente"
+    }
+  },
+  {
+    $unwind: "$facturasCliente"
+  },
+  {
+    $project: {
+        _id: 0,
+        nro_factura: "$facturasCliente.nro_factura",
+        fecha: "$facturasCliente.fecha",
+        total_sin_iva: "$facturasCliente.total_sin_iva",
+        iva: "$facturasCliente.iva",
+        total_con_iva: "$facturasCliente.total_con_iva",
+        nro_cliente: "$facturasCliente.nro_cliente"
+    }
+  }
+]);
+
+--8
+db.detalle_factura.aggregate([
+  {
+    $lookup: {
+      from: "producto",
+      localField: "codigo_producto",
+      foreignField: "codigo_producto",
+      as: "prod_det_factura"
+    }
+  },
+  {
+    $match: {
+      "prod_det_factura": {
+        $elemMatch: { marca: "In Faucibus Inc." }
+      }
+    }
+  },
+  {
+    $project: { _id: 0, nro_factura: 1 }
+  }
+])
+
+
+
+--9
+db.telefono.aggregate([
+{
+	$lookup: {
+		from: "clientes",
+    localField: "nro_cliente",
+    foreignField: "nro_cliente",
+    as: "datos_cliente"
+	}
+},
+{
+    $unwind: "$datos_cliente"
+},
+{
+    $replaceRoot: { newRoot: { $mergeObjects: ["$datos_cliente", "$$ROOT"] } }
+},
+{
+	$project: { _id:0, codigo_area:1, nro_telefono:1, nombre: 1, apellido: 1, direccion:1, activo:1 }
+}
+])
+
+--10
+db.factura.aggregate([
+  {
+    $lookup: {
+      from: "clientes",
+      localField: "nro_cliente",
+      foreignField: "nro_cliente",
+      as: "cliente_info"
+    }
+  },
+  {
+    $group: {
+      _id: "$nro_cliente",
+      total_con_iva: { $sum: "$total_con_iva" },
+      nombre_cliente: { $first: { $arrayElemAt: ["$cliente_info.nombre", 0] } },
+      apellido_cliente: { $first: { $arrayElemAt: ["$cliente_info.apellido", 0] } }
+    }
+  },
+  {
+    $project: {
+      _id: 0,
+      total_con_iva: 1,
+      nombre_cliente: 1,
+      apellido_cliente: 1
+    }
+  }
+]);
+ 

@@ -1,3 +1,5 @@
+CONSULTAS POSTGRESQL
+
 --1
 SELECT nro_telefono, e01t.nro_cliente
 FROM e01_cliente JOIN e01_telefono e01t
