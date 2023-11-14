@@ -1,21 +1,22 @@
-
 {
   "scripts": {
     "start": "node server.js",
     "postgres": "node SQL_API_server/server.js",
-    "dev": "nodemon server.js"
+    "mongo": "node Mongo_API_server/server.js"
   },
   "name": "tpo-bd2",
-  "description": "Trabajo practico obligotorio 2C 2023 Alasia, Della Torre, Escudeiro Garcia, Hiba",
+  "description": "Trabajo practico obligatorio 2C 2023 Alasia, Della Torre, Escudeiro Garcia, Hiba",
   "version": "1.0.0",
   "main": "db.js",
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "dotenv": "^16.3.1",
     "express": "^4.18.2",
+    "mongodb": "^6.1.0",
+    "mongoose": "^8.0.0",
     "nodemon": "^3.0.1",
     "pg": "^8.11.3",
-    "mongodb": "^6.1.0",
     "pg-promise": "^11.5.4"
   }
 }
