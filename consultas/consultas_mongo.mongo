@@ -214,3 +214,10 @@ db.factura.aggregate([
   }
 ]);
  
+--VISTAS
+
+--1
+db.createView("facturas_ordenadas", "factura", [{$sort:{fecha:1}}])
+
+--2
+db.createView("productos_sin_factura", "producto",[{$lookup:{from: "detalle_factura",localField: "codigo_producto",foreignField: "codigo_producto",as:"facturas"}},{$match:{"facturas":{$eq:[]}}},{$project:{_id:0,codigo_producto:1,marca:1,nombre:1,descripcion:1,precio:1,stock:1}}])
