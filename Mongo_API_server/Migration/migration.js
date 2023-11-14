@@ -3,7 +3,7 @@ const { MongoClient } = require('mongodb');
 const fs = require("fs");
 
 // PostgreSQL connection settings
-const pgConfig = JSON.parse(fs.readFileSync("./pg_config.json", "utf-8"));
+const pgConfig = JSON.parse(fs.readFileSync("Mongo_API_server/Migration/pg_config.json", "utf-8"));
 
 const mongoUrl = 'mongodb://localhost:27017';
 const dbName = 'tpobd2';

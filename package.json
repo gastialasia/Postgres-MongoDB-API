@@ -2,6 +2,7 @@
 {
   "scripts": {
     "start": "node server.js",
+    "postgres": "node SQL_API_server/server.js",
     "dev": "nodemon server.js"
   },
   "name": "tpo-bd2",

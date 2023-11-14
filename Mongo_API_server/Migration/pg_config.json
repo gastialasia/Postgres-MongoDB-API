@@ -1,0 +1,8 @@
+{
+    "user": "usuario",
+    "host": "localhost",
+    "database": "tpo",
+    "password": "password",
+    "port": 5432
+}
+

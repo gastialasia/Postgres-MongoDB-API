@@ -101,7 +101,7 @@ CREATE VIEW facturas_por_fecha AS (
 SELECT *
 FROM e01_factura
 ORDER BY fecha
-                                  );
+);
 
 --2
 CREATE VIEW productos_sin_factura AS (
@@ -110,7 +110,7 @@ FROM e01_producto
 WHERE codigo_producto NOT IN
     (SELECT codigo_producto
      FROM e01_detalle_factura)
-                                     );
+);
 
 
 
