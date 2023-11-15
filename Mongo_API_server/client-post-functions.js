@@ -1,16 +1,11 @@
-const pool = require("./db")
-const queries = require("./queries")
+const mongoose = require('mongoose');
+const database = mongoose.connection
 
-const addClient = (req, res) => {
-    const { nombre, apellido, direccion, activo } = req.body
-    pool.query(queries.newUserQuery, [nombre, apellido, direccion, activo], (error, results) => {
-        if (error) {
-            res.status(400).send("Error en la BD: " + error.message)
-        }
-        else {
-            res.status(201).send("Cliente agregado con exito")
-        }
-    })
+const addClient = async (req, res) => {
+    let collection = await database.collection("clientes");
+    let newDocument = req.body;
+    let result = await collection.insertOne(newDocument);
+    res.send(result).status(204);
 }
 
 const removeClient = (req, res) => {
