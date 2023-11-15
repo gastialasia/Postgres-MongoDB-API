@@ -2,7 +2,8 @@
   "scripts": {
     "start": "node server.js",
     "postgres": "node SQL_API_server/server.js",
-    "mongo": "node Mongo_API_server/server.js"
+    "mongo": "node Mongo_API_server/server.js",
+    "migration": "node Mongo_API_server/Migration/migration.js"
   },
   "name": "tpo-bd2",
   "description": "Trabajo practico obligatorio 2C 2023 Alasia, Della Torre, Escudeiro Garcia, Hiba",
