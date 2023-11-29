@@ -1,7 +1,7 @@
 {
   "scripts": {
     "start": "node server.js",
-    "postgres": "node SQL_API_server/server.js",
+    "postgres": "node PostgreSQL_API_server/server.js",
     "mongo": "node Mongo_API_server/server.js",
     "migration": "node Mongo_API_server/Migration/migration.js"
   },
