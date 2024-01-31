@@ -1,22 +1,28 @@
-# TPO-BD2
+# Database API - Postgres & Mongo
 
-Trabajo Practico Obligatorio - 2C 2023 - Alasia, Della Torre, Escudeiro Garcia, Hiba
+Servidor backend API que ofrece endpoints para modificar dos bases de datos: una de PostgreSQL y otra de MongoDB. Se trata de dos servidores independientes. Además, se ofrece un mecanismo de migración desde desde la primera (PostgreSQL) hacia la segunda (MongoDB).
 
-# Features
+## Características principales
 
-El trabajo consiste en un servicio de API que ofrece endpoints para modificar dos bases de datos: una de PostgreSQL y otra de MongoDB. Se trata de dos servidores independientes. Además, se ofrece un mecanismo de migración desde la primera hacia la segunda.
+* Ofrece endpoints para crear, leer, modificar y eliminar (CRUD) tanto de la base PostgreSQL como la de MongoDB.
+* Ambos endpoints ofrecen una estructura idéntica, lo que facilita su uso
+* Script de migración de datos desde PostgreSQL hacia MongoDB.
 
-# Setup
+## Tecnologías utilizadas
 
-Para poder testear este trabajo es necesario contar con una instacia de PostgreSQL y/o MongoDB en ejecucion.
+Desarrollado utilizando Node.js y Express para el backend API. Las consultas se realizan mediante queries PostgreSQL y MongoDB.
 
-### PostgreSQL
+## Setup
+
+Para poder testear este proyecto es necesario contar con una instacia de PostgreSQL y/o MongoDB en ejecucion.
+
+## PostgreSQL
 
 Para configurar el servidor API de Postgres, en primer lugar se debe modificar el archivo db.js en la carpeta PostgreSQL_API_server indicando user, host, database, password y port de dicha base de datos.
 
 Luego se debe iniciar el servidor donde correrá el servicio de API REST.
 
-### MongoDB
+## MongoDB
 
 Para configurar el servidor API de MongoDB, no se deben hacer configuraciones adicionales. MongoDB debe estar corriendo sin usuario ni password en el puerto default 27017.
 
@@ -54,6 +60,6 @@ npm run mongo
 
 Deberá figurar un mensaje 'La API Mongo esta corriendo...' para saber que el servicio se ejecutó con éxito. Utiliza el puerto 9998.
 
-### Documentación general de las APIs
+## Documentación general de las APIs
 
 Referirse al documento api_docs.txt que se encuentra en la carpeta raíz del repositorio.
